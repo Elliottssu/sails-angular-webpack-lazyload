@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import { AuthGuardNotLogin, SelectivePreloadingStrategyService } from './_services'
 import { NotFoundComponent } from './_shared';
 
 const appRoutes: Routes = [
   {
-    path: 'user',
-    loadChildren: './user/user.module#UserModule?chunkName=user',
-  },
-  {
-    path: 'app',
+    path: 'system',
+    canLoad: [AuthGuardNotLogin],
     loadChildren: './system/system.module#SystemModule?chunkName=system',
   },
-  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  {
+    path: 'website',
+    loadChildren: './website/website.module#WebsiteModule?chunkName=website',
+  },
+  { path: '', redirectTo: 'website', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 
 
@@ -19,13 +21,14 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: SelectivePreloadingStrategyService }), //自定义预加载
   ],
   exports: [
     RouterModule
   ],
   providers: [
-    
+    AuthGuardNotLogin,
+    SelectivePreloadingStrategyService
   ]
 })
 export class AppRoutingModule { }

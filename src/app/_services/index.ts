@@ -9,3 +9,4 @@ export * from './guard/canActivate-not-login.service';
 export * from './util/shared.service';
 export * from './util/util.service';
 export * from './util/intercept.service';
+export * from './util/preloading.service';

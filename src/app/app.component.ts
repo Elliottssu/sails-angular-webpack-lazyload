@@ -5,8 +5,9 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import '../style/styles.scss';
 import { SharedService } from './_services'
+
+import '../style/styles.scss';
 
 @Component({
 	selector: 'app',

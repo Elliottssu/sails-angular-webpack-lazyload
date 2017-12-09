@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	templateUrl: './notFound.component.html',
-	styleUrls: ['./notFound.component.scss']
+	templateUrl: './not-found.component.html',
+	styleUrls: ['./not-found.component.scss']
 })
 
 export class NotFoundComponent implements OnInit {

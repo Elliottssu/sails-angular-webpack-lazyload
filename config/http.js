@@ -30,7 +30,7 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
     angular: function (req, res, next) { //解决html5路由
-      let static = ['/js', '/css', '/fonts', '/img'];
+      let static = ['/js', '/css', '/fonts', '/images'];
       for (var str of static) {
         if (req.path.indexOf(str) >= 0) {
           next();
@@ -46,6 +46,7 @@ module.exports.http = {
     },
     compression: require('compression')(), //gzp压缩
     order: [
+      'angular',
       'startRequestTimer',
       'cookieParser',
       'session',

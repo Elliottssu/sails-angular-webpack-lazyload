@@ -1,48 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuardNotLogin } from '../_services'
-import {
-  SystemComponent,
-  HomeComponent,
-  CompositeComponent, CompositeAnalysisComponent,
-} from '../system';
+import { AuthGuardAlreadyLogin } from '../_services'
+import { SystemComponent, LoginComponent, RegisterComponent } from '../system';
 
-const systemRoutes: Routes = [
+
+const websiteRoutes: Routes = [
   {
     path: '',
     component: SystemComponent,
     children: [
-      {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [AuthGuardNotLogin],
-        data: { title: '首页' }
-      },
-     
-      {
-        path: 'composite',
-        component: CompositeComponent,
-        canActivate: [AuthGuardNotLogin],
-        children: [
-          { path: 'analysis', component: CompositeAnalysisComponent, data: { title: '综合分析' } },
-          { path: '', redirectTo: 'analysis', pathMatch: 'full' },
-        ]
-      },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent, canActivate: [AuthGuardAlreadyLogin], data: { title: '登录-后台管理系统' } },
+      { path: 'register', component: RegisterComponent, data: { title: '注册-后台管理系统' } },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ]
   },
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(systemRoutes)
+    RouterModule.forChild(websiteRoutes)
   ],
   exports: [
     RouterModule
   ],
   providers: [
-    AuthGuardNotLogin
+    AuthGuardAlreadyLogin,
   ]
 })
 export class SystemRoutingModule { }

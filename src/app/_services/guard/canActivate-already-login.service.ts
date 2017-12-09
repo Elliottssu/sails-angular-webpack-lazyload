@@ -3,16 +3,16 @@
  */
 
 import { Injectable } from '@angular/core';
-import { CanLoad, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { UtilService } from '../util/util.service';
 
 @Injectable()
-export class AuthGuardAlreadyLogin implements CanLoad {
+export class AuthGuardAlreadyLogin implements CanActivate {
     constructor(private router: Router, private utilService: UtilService) {
     }
 
     //登录页面，如果检测到session，不用登录直接进入页面
-    canLoad(): boolean {
+    canActivate(): boolean {
         return true
         // return this.checkSession();
     }

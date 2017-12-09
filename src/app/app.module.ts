@@ -5,22 +5,25 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
-//第三方插件
+//Shared
+import { SharedModule } from './_shared/shared.module';
+
+//Plugs
 import { NgZorroAntdModule, NZ_MESSAGE_CONFIG } from 'ng-zorro-antd';
 import { CookieService } from 'angular2-cookie/core';
 
-//service
+//Service
 import {
   ApiUserService,
   AuthGuardAlreadyLogin, AuthGuardNotLogin,
-  SharedService, UtilService, InterceptService
+  SharedService, UtilService, InterceptService,
 } from './_services';
 
-import { NotFoundComponent} from './_shared';
 
-import { AppRoutingModule }        from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NotFoundComponent } from './_shared';
 
 @NgModule({
   imports: [
@@ -29,6 +32,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     AppRoutingModule,
     NgZorroAntdModule.forRoot(),
   ],
@@ -46,6 +50,7 @@ import { AppComponent } from './app.component';
       provide: NZ_MESSAGE_CONFIG, //消息弹窗默认配置
       useValue: { nzDuration: 3000 }
     },
+    
     ApiUserService,
     AuthGuardAlreadyLogin,
     AuthGuardNotLogin,
